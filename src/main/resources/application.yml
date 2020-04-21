@@ -1,0 +1,4 @@
+spring:
+  application:
+    name: tools
+#    port: 8081
