@@ -8,6 +8,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.*;
+import java.util.Scanner;
 
 /**
  * pdf转换类
@@ -69,8 +70,5 @@ public class PDFTransformer<main> {
                 : pdfIn;
     }
 
-    public static void main(String[] args){
-        String testPdf = "F:\\aa重大考研\\专业课\\重庆大学-877-2020-真题回忆版.pdf";
-        pdf2word(testPdf);
-    }
+
 }
