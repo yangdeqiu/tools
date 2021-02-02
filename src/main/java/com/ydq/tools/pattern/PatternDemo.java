@@ -1,12 +1,10 @@
 package com.ydq.tools.pattern;
 
+import com.sun.codemodel.internal.JClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 范型测试类
@@ -50,7 +48,18 @@ public class PatternDemo {
         //泛型可以是看成容器里元素的尺子。
         //往容器里放，元素必须比每把尺子都要小；
         //取出的时候，必须用比最大的尺子还要大的引用来接收：
+        Map<? super Object, ? super Object> map1 = new HashMap<>();
+        map1.put("1", "2");
+        
+    }
 
+    public static <T> List<T> makeList(T... args) {
+        final ArrayList<T> ts = new ArrayList<>(Arrays.asList(args));
+        return ts;
+    }
+
+    public static <K, V> Map<K, V> map() {
+        return new HashMap<>();
     }
 
     public static <T> void printMsg( T... args){
