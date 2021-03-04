@@ -20,9 +20,33 @@
         <lombok.version>1.18.12</lombok.version>
         <poi.version>3.17</poi.version>
         <struts2.version>2.3.14</struts2.version>
+        <javacv.version>1.4.4</javacv.version>
+        <ffmpeg.version>4.1-1.4.4</ffmpeg.version>
+        <cpp.version>1.4.4</cpp.version>
+        <opencv.version>4.0.1-1.4.4</opencv.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacpp</artifactId>
+            <version>${cpp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv</artifactId>
+            <version>${javacv.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco.javacpp-presets</groupId>
+            <artifactId>opencv</artifactId>
+            <version>${opencv.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco.javacpp-presets</groupId>
+            <artifactId>ffmpeg-platform</artifactId>
+            <version>${ffmpeg.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-core</artifactId>
