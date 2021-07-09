@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public class FileDataHandler {
      * 文件重组
      *
      * @param fileList    正确顺序文件列表
-     * @param combinePath 重组文件输入路径
+     * @param combinePath 重组文件输出路径
      */
     private static void combine(List<String> fileList, String combinePath) {
         try (
@@ -80,6 +81,5 @@ public class FileDataHandler {
     }
 
     public static void main(String args[]) throws IOException {
-        split("F:\\software\\CentOS-6.5-x86_64-bin-DVD1.iso", 4);
     }
 }
