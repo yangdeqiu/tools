@@ -12,6 +12,8 @@ import java.util.List;
  */
 public class FileDataHandler {
 
+    private static final int SIZE_4K = 1024 << 2;
+
     /**
      * 大文件拆分合并
      * 文件重组
@@ -23,16 +25,20 @@ public class FileDataHandler {
         try (
                 FileOutputStream out = new FileOutputStream(combinePath)
         ) {
-            byte[] data = new byte[1024 << 4];
+            byte[] data = new byte[SIZE_4K];
             for (String fn : fileList) {
                 RandomAccessFile raf = new RandomAccessFile(fn, "r");
-                int rest = (int) (raf.length() % (1024 << 4));
-                while (raf.read(data) != -1) {
-                    out.write(data);
-                    if (raf.getFilePointer() == raf.length() - rest) {
+                int rest = (int) (raf.length() % (SIZE_4K));
+                long rest_pointer = raf.length() - rest;
+                while (true) {
+                    if (raf.getFilePointer() == rest_pointer) {
                         byte[] restData = new byte[rest];
                         raf.read(restData);
                         out.write(restData);
+                        break;
+                    } else {
+                        raf.read(data);
+                        out.write(data);
                     }
                 }
                 raf.close();
@@ -56,21 +62,24 @@ public class FileDataHandler {
         ) {
             long size = file.length();
             long step = size / n;
-            byte[] data = new byte[1024 << 4];
+            byte[] data = new byte[SIZE_4K];
             for (int i = 0; i < n; i++) {
                 long start = i * step;
                 long end = (i != n - 1) ? (i + 1) * step : size;
-                int rest = (int) ((end - start) % (1024 << 4));
+                int rest = (int) ((end - start) % (SIZE_4K));
+                long rest_pointer = end - rest; 
                 FileOutputStream out = new FileOutputStream(filepath + i);
                 raf.seek(start);
-                while (raf.read(data) != -1) {
-                    out.write(data);
-                    //拆分后的数据可能不是data容量的整数倍，在非最后一块数据时，不能直接读取data容量数据
-                    if (raf.getFilePointer() == end - rest) {
+                while (true) {
+                    // 拆分后的数据可能不是data容量的整数倍，在非最后一块数据时，不能直接读取data容量数据
+                    if (raf.getFilePointer() == rest_pointer) {
                         byte[] restData = new byte[rest];
                         raf.read(restData);
                         out.write(restData);
                         break;
+                    } else {
+                        raf.read(data);
+                        out.write(data);
                     }
                 }
                 out.close();
