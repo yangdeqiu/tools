@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
-public class NIOFileChannel01 {
+public class NIOFileChannelWriter {
 
     public static void main(String[] args) throws IOException {
         String str = "hello,尚硅谷";
         //创建一个输出流 -> channel
-        FileOutputStream fileOutputStream = new FileOutputStream(".\\file01.txt");
+        FileOutputStream fileOutputStream = new FileOutputStream("./file01.txt");
 
         //通过 fileOutputStream 获取对应的 FileChannel
         //这个 fileChannel 真实类型是 FileChannelImpl

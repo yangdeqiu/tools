@@ -1,6 +1,5 @@
 package com.ydq.tools.pattern;
 
-import com.sun.codemodel.internal.JClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
