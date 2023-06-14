@@ -19,7 +19,7 @@
         <pdfbox.version>2.0.19</pdfbox.version>
         <lombok.version>1.18.12</lombok.version>
         <poi.version>3.17</poi.version>
-        <struts2.version>2.3.14</struts2.version>
+        <struts2.version>2.5.31</struts2.version>
         <javacv.version>1.4.4</javacv.version>
         <ffmpeg.version>4.1-1.4.4</ffmpeg.version>
         <cpp.version>1.4.4</cpp.version>
